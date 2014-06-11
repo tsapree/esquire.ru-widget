@@ -14,6 +14,8 @@
 		android:text="@string/widget_text"
 		android:textColor="#000"
 		android:textSize="18sp"
+		android:padding="@dimen/widget_margin"
+		
 	/>
 
 </RelativeLayout>
