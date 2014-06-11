@@ -3,5 +3,7 @@
 
     <string name="app_name">Esquire.ru Widget</string>
     <string name="hello_world">Hello world!</string>
+    <string name="widget_name">First widget</string>
+    <string name="widget_text">Text in widget</string>
 
 </resources>
