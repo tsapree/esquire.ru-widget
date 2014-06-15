@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:padding="@dimen/widget_margin" >
+	
+    <RelativeLayout
+        android:id="@+id/rlWidget"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFF6F6F6" >
+        
+		<TextView
+		    android:id="@+id/tvAbout"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentLeft="true"
+		    android:layout_alignParentTop="true"
+		    android:textColor="#000"
+		    android:text="ЦИТАТЫ" />
+	
+		<TextView
+		    android:id="@+id/tvText"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentLeft="true"
+		    android:layout_below="@+id/tvAbout"
+		    android:textColor="#000"
+		    android:text="Text" />
+	
+		<ImageView
+		    android:id="@+id/ivImage"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignLeft="@+id/tvText"
+		    android:layout_below="@+id/tvText"
+		    android:src="@drawable/ic_launcher" />
+	
+		<TextView
+		    android:id="@+id/tvAuthorName"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentLeft="true"
+		    android:layout_below="@+id/ivImage"
+		    android:textColor="#000"
+		    android:text="AuthorName" />
+	
+		<TextView
+		    android:id="@+id/tvAuthorDesc"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentLeft="true"
+		    android:layout_below="@+id/tvAuthorName"
+		    android:textColor="#000"
+		    android:text="AuthorDesc" />
+
+	</RelativeLayout>
+
+</RelativeLayout>
