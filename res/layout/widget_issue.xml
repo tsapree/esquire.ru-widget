@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/widget_margin" >
+
+    <RelativeLayout
+        android:id="@+id/rlWidget"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFF6F6F6"
+        android:padding="4dp" >
+
+        <TextView
+            android:id="@+id/tvDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/textView1"
+            android:gravity="center"
+            android:text="Апокалипсис и макароны, прокрастинация и смерть, диктатура и онанизм, жена и галлюцинации, футбол и эльфы. Сто ключевых понятий, о которых писал Esquire в ста номерах. Кроме того: как правильно торговать человеческими органами, сколько в России Венеций, Манчестеров и Лох-Нессов, кто пьет крокодильи слезы, а также история самой жестокой банды русских националистов и рассказ слепоглухой писательницы о том, как она видит и что она слышит. А также правила жизни Джеки Чана, Владимира Мартынова и Брюса Уиллиса. "
+            android:textColor="#000" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/textView1"
+            android:adjustViewBounds="true"
+            android:src="@drawable/last" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="   " />
+
+    </RelativeLayout>
+
+</RelativeLayout>

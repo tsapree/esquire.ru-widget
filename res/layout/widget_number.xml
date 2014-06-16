@@ -8,41 +8,66 @@
         android:id="@+id/rlWidget"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFF6F6F6" >
+        android:background="#FFF6F6F6"
+        android:padding="4dp" >
 
-	    <TextView
+		<ImageView
+	        android:id="@+id/imageView1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_above="@+id/tvValue"
+	        android:layout_alignLeft="@+id/tvUnits"
+	        android:layout_toLeftOf="@+id/tvAbout"
+	        android:scaleType="fitStart"
+	        android:src="@drawable/esquire" />
+
+		<TextView
 	        android:id="@+id/tvAbout"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentRight="true"
 	        android:layout_alignParentTop="true"
-	        android:textColor="#000"
-	        android:text="ЦИФРА ДНЯ" />
-	
+	        android:text="ЦИФРА ДНЯ"
+	        android:textColor="#000" />
+		
+		<TextView
+	        android:id="@+id/tvValue"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentRight="true"
+	        android:layout_below="@+id/tvAbout"
+	        android:gravity="center"
+	        android:text="Value"
+	        android:textColor="#000" />
+			
 	    <TextView
 	        android:id="@+id/tvUnits"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentRight="true"
 	        android:layout_below="@+id/tvValue"
-	        android:textColor="#000"
-	        android:text="Units" />
+	        android:gravity="center"
+	        android:text="Units"
+	        android:textColor="#000" />
 	
 	    <TextView
 	        android:id="@+id/tvDesc"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentRight="true"
 	        android:layout_below="@+id/tvUnits"
-	        android:textColor="#000"
-	        android:text="Desc" />
-	
-	    <TextView
-	        android:id="@+id/tvValue"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignLeft="@+id/tvAbout"
-	        android:layout_below="@+id/tvAbout"
-	        android:textColor="#000"
-	        android:text="Value" />
+	        android:gravity="center"
+	        android:text="Desc"
+	        android:textColor="#000" />
+
+
+
+
+
+	    
         
     </RelativeLayout>
 

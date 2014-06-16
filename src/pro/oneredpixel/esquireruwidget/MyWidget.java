@@ -12,9 +12,10 @@ import android.widget.RemoteViews;
 public class MyWidget extends AppWidgetProvider {
 	
 	static int layouts[]={
-			R.layout.widget,
+			R.layout.widget_about,
 			R.layout.widget_number,
-			R.layout.widget_quote
+			R.layout.widget_quote,
+			R.layout.widget_rules,
 	};
 	
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
@@ -29,13 +30,14 @@ public class MyWidget extends AppWidgetProvider {
 	static void updateWidget(Context context, AppWidgetManager appWidgetManager,
 		       int widgetID) {
 		
-		int layout=layouts[(int)(Math.random()*3)];
+		int layout=layouts[(int)(Math.random()*layouts.length)];
 		RemoteViews widgetView = new RemoteViews(context.getPackageName(),
 		        layout);
 		switch (layout) {
 		case R.layout.widget_number:
 			widgetView.setTextViewText(R.id.tvValue, "22%");
 			widgetView.setTextViewText(R.id.tvDesc, "Столько жителей Рио де Жанейро настолько недовольны фактом проведения Чемпионата Мира по футболу в Бразилии, что желают проигрыша собственной сборной.");
+			//widgetView.setf
 			break;
 		case R.layout.widget_quote:
 			widgetView.setTextViewText(R.id.tvText,"«Слово Сталинград уже живет жизнью, независимой от имени Сталина»");

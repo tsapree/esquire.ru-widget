@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/widget_margin" >
+
+    <RelativeLayout
+        android:id="@+id/rlWidget"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFF6F6F6"
+        android:padding="4dp" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tvAbout"
+            android:layout_toLeftOf="@+id/tvAbout"
+            android:scaleType="fitStart"
+            android:src="@drawable/esquire" />
+
+        <TextView
+            android:id="@+id/tvAbout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:text="ПРАВИЛА ЖИЗНИ"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/tvAuthorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/imageView1"
+            android:layout_alignRight="@+id/imageView2"
+            android:layout_below="@+id/imageView1"
+            android:gravity="center"
+            android:text="Брюс Уиллис"
+            android:textColor="#FF0082DD" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/imageView1"
+            android:layout_below="@+id/tvAuthorName"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rules" />
+
+        <TextView
+            android:id="@+id/tvDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/imageView2"
+            android:layout_below="@+id/imageView2"
+            android:gravity="center"
+            android:text="“Выпадение волос, лысина — это способ Господа напомнить мне, что я человек, а не обезьяна” "
+            android:textColor="#000" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
