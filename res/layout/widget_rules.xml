@@ -8,8 +8,7 @@
         android:id="@+id/rlWidget"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFF6F6F6"
-        android:padding="4dp" >
+        android:background="@drawable/background" >
 
         <TextView
             android:id="@+id/tvCenter"
