@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.view.View;
 import android.widget.RemoteViews;
 
 
@@ -16,6 +17,7 @@ public class MyWidget extends AppWidgetProvider {
 			R.layout.widget_number,
 			R.layout.widget_quote,
 			R.layout.widget_rules,
+			R.layout.widget_issue,
 	};
 	
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
@@ -35,8 +37,18 @@ public class MyWidget extends AppWidgetProvider {
 		        layout);
 		switch (layout) {
 		case R.layout.widget_number:
+			
+			//int numberFontSize=16;
+			//int otherFontSize=8;
+			int numberFontSize=30;
+			int otherFontSize=12;
+
 			widgetView.setTextViewText(R.id.tvValue, "22%");
 			widgetView.setTextViewText(R.id.tvDesc, "Столько жителей Рио де Жанейро настолько недовольны фактом проведения Чемпионата Мира по футболу в Бразилии, что желают проигрыша собственной сборной.");
+			widgetView.setViewVisibility(R.id.tvUnits, View.GONE);
+			widgetView.setFloat(R.id.tvValue, "setTextSize", numberFontSize);
+			widgetView.setFloat(R.id.tvDesc, "setTextSize", otherFontSize);
+			widgetView.setFloat(R.id.tvAbout, "setTextSize", otherFontSize);
 			//widgetView.setf
 			break;
 		case R.layout.widget_quote:

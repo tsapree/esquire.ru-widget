@@ -10,36 +10,51 @@
         android:layout_height="match_parent"
         android:background="#FFF6F6F6"
         android:padding="4dp" >
+        
+        <TextView
+            android:id="@+id/tvCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="   " />
 
 		<ImageView
-	        android:id="@+id/imageView1"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_above="@+id/tvValue"
-	        android:layout_alignLeft="@+id/tvUnits"
-	        android:layout_toLeftOf="@+id/tvAbout"
-	        android:scaleType="fitStart"
-	        android:src="@drawable/esquire" />
+		    android:id="@+id/ivLogo"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignBottom="@+id/tvAbout"
+		    android:layout_alignParentLeft="true"
+		    android:layout_alignRight="@+id/tvCenter"
+		    android:scaleType="fitStart"
+		    android:src="@drawable/esquire" />
 
 		<TextView
-	        android:id="@+id/tvAbout"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignParentRight="true"
-	        android:layout_alignParentTop="true"
-	        android:text="ЦИФРА ДНЯ"
-	        android:textColor="#000" />
+		    android:id="@+id/tvAbout"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentRight="true"
+		    android:layout_alignParentTop="true"
+		    android:layout_toRightOf="@+id/tvCenter"
+		    android:fontFamily="sans-serif"
+		    android:text="Цифра дня"
+		    android:textAllCaps="true"
+		    android:textColor="#000"
+		    android:gravity="right"
+		    android:textStyle="bold" />
 		
 		<TextView
-	        android:id="@+id/tvValue"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignParentLeft="true"
-	        android:layout_alignParentRight="true"
-	        android:layout_below="@+id/tvAbout"
-	        android:gravity="center"
-	        android:text="Value"
-	        android:textColor="#000" />
+		    android:id="@+id/tvValue"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentLeft="true"
+		    android:layout_alignParentRight="true"
+		    android:layout_below="@+id/tvAbout"
+		    android:fontFamily="sans-serif-bold"
+		    android:gravity="center"
+		    android:text="value"
+		    android:textColor="#000"
+		    android:textStyle="bold" />
 			
 	    <TextView
 	        android:id="@+id/tvUnits"
@@ -48,6 +63,7 @@
 	        android:layout_alignParentLeft="true"
 	        android:layout_alignParentRight="true"
 	        android:layout_below="@+id/tvValue"
+	        android:fontFamily="sans-serif-light"
 	        android:gravity="center"
 	        android:text="Units"
 	        android:textColor="#000" />
@@ -59,15 +75,10 @@
 	        android:layout_alignParentLeft="true"
 	        android:layout_alignParentRight="true"
 	        android:layout_below="@+id/tvUnits"
+	        android:fontFamily="sans-serif"
 	        android:gravity="center"
 	        android:text="Desc"
 	        android:textColor="#000" />
-
-
-
-
-
-	    
         
     </RelativeLayout>
 
