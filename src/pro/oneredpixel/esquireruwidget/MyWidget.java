@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -33,8 +34,16 @@ public class MyWidget extends AppWidgetProvider {
 		       int widgetID) {
 		
 		int layout=layouts[(int)(Math.random()*layouts.length)];
-		RemoteViews widgetView = new RemoteViews(context.getPackageName(),
-		        layout);
+		
+	    SharedPreferences sp = context.getSharedPreferences("widget_data", Context.MODE_PRIVATE);
+	    String numberValue=sp.getString("NumberValue", null);
+	    String quoteText=sp.getString("QuoteText", null);
+	    
+	    //TODO: kill this lame please
+	    if ((layout==R.layout.widget_number) && (numberValue==null)) layout=R.layout.widget_about;
+	    if ((layout==R.layout.widget_quote) && (quoteText==null)) layout=R.layout.widget_about;
+	    
+		RemoteViews widgetView = new RemoteViews(context.getPackageName(), layout);
 		switch (layout) {
 		case R.layout.widget_number:
 			
@@ -43,18 +52,19 @@ public class MyWidget extends AppWidgetProvider {
 			int numberFontSize=30;
 			int otherFontSize=12;
 
-			widgetView.setTextViewText(R.id.tvValue, "22%");
-			widgetView.setTextViewText(R.id.tvDesc, "Столько жителей Рио де Жанейро настолько недовольны фактом проведения Чемпионата Мира по футболу в Бразилии, что желают проигрыша собственной сборной.");
-			widgetView.setViewVisibility(R.id.tvUnits, View.GONE);
+			fillText(widgetView, R.id.tvValue, "NumberValue", sp);
+			fillText(widgetView, R.id.tvDesc, "NumberDesc", sp);
+			fillText(widgetView, R.id.tvUnits, "NumberUnits", sp);
+			
 			widgetView.setFloat(R.id.tvValue, "setTextSize", numberFontSize);
 			widgetView.setFloat(R.id.tvDesc, "setTextSize", otherFontSize);
 			widgetView.setFloat(R.id.tvAbout, "setTextSize", otherFontSize);
 			//widgetView.setf
 			break;
 		case R.layout.widget_quote:
-			widgetView.setTextViewText(R.id.tvText,"«Слово Сталинград уже живет жизнью, независимой от имени Сталина»");
-			widgetView.setTextViewText(R.id.tvAuthorName,"Всеволод Чаплин");
-			widgetView.setTextViewText(R.id.tvAuthorDesc,"Протоиерей");
+			fillText(widgetView, R.id.tvText, "QuoteText", sp);
+			fillText(widgetView, R.id.tvAuthorName, "QuoteAuthorName", sp);
+			fillText(widgetView, R.id.tvAuthorDesc, "QuoteAuthorDesc", sp);
 			break;
 		}
 		
@@ -73,5 +83,11 @@ public class MyWidget extends AppWidgetProvider {
 		    
 		    // Обновляем виджет
 		    
+	}
+	
+	static void fillText(RemoteViews rv, int id, String key, SharedPreferences sp) {
+		String txt=sp.getString(key, null);
+		if (txt!=null) rv.setTextViewText(id, txt);
+		else rv.setViewVisibility(id, View.GONE);		
 	}
 }
