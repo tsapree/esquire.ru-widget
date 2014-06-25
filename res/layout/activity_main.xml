@@ -13,11 +13,19 @@
         android:text="Fill data" />
 
     <Button
-        android:id="@+id/bClear"
+        android:id="@+id/bDecode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/bFill"
+        android:text="Decode data" />
+
+    <Button
+        android:id="@+id/bClear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/bDecode"
         android:text="Clear data" />
 
 </RelativeLayout>

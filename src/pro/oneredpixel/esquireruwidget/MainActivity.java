@@ -15,6 +15,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_main);
 		findViewById(R.id.bFill).setOnClickListener(this);
 		findViewById(R.id.bClear).setOnClickListener(this);
+		findViewById(R.id.bDecode).setOnClickListener(this);
 		
 	}
 
@@ -33,6 +34,10 @@ public class MainActivity extends Activity implements OnClickListener {
 		    editor.putString("QuoteAuthorDesc", "Заместитель министра культуры РФ, курирующая сферу туризма");
 
 		    editor.commit();
+			break;
+		case R.id.bDecode:
+			WebSqueezer ws=new WebSqueezer();
+			ws.updateStorage(this);
 			break;
 		case R.id.bClear:
 		    editor.clear();
