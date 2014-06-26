@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.text.Html;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -87,7 +88,7 @@ public class MyWidget extends AppWidgetProvider {
 	
 	static void fillText(RemoteViews rv, int id, String key, SharedPreferences sp) {
 		String txt=sp.getString(key, null);
-		if (txt!=null) rv.setTextViewText(id, txt);
+		if (txt!=null) rv.setTextViewText(id, Html.fromHtml(txt));
 		else rv.setViewVisibility(id, View.GONE);		
 	}
 }
