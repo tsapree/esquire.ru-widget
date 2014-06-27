@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:padding="@dimen/widget_margin" >
+	
+    <RelativeLayout
+        android:id="@+id/rlWidget"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background" >
+
+		<TextView
+            android:id="@+id/tvCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="   " />
+
+		<ImageView
+		    android:id="@+id/ivLogo"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignBottom="@+id/tvAbout"
+		    android:layout_alignParentLeft="true"
+		    android:layout_alignRight="@+id/tvCenter"
+		    android:scaleType="fitStart"
+		    android:src="@drawable/esquire" />
+
+		<TextView
+		    android:id="@+id/tvAbout"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentRight="true"
+		    android:layout_alignParentTop="true"
+		    android:layout_toRightOf="@+id/tvCenter"
+		    android:fontFamily="sans-serif"
+		    android:text="Открытия"
+		    android:textAllCaps="true"
+		    android:textColor="#000"
+		    android:gravity="right"
+		    android:textStyle="bold" />
+
+	
+		<TextView
+		    android:id="@+id/tvText"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentLeft="true"
+		    android:layout_alignParentRight="true"
+		    android:layout_below="@+id/tvAbout"
+		    android:fontFamily="sans-serif"
+		    android:text="Text"
+		    android:gravity="center"
+		    android:textColor="#000" />
+
+	</RelativeLayout>
+
+</RelativeLayout>

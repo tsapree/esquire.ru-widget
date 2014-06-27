@@ -18,6 +18,7 @@ public class MyWidget extends AppWidgetProvider {
 			R.layout.widget_about,
 			R.layout.widget_number,
 			R.layout.widget_quote,
+			R.layout.widget_discoveries,
 			R.layout.widget_rules,
 			R.layout.widget_issue,
 	};
@@ -67,7 +68,18 @@ public class MyWidget extends AppWidgetProvider {
 			fillText(widgetView, R.id.tvAuthorName, "QuoteAuthorName", sp);
 			fillText(widgetView, R.id.tvAuthorDesc, "QuoteAuthorDesc", sp);
 			break;
+		case R.layout.widget_rules:
+			fillText(widgetView, R.id.tvAuthorName, "RulesAuthorName", sp);
+			fillText(widgetView, R.id.tvDesc, "RulesDesc", sp);
+			break;
+		case R.layout.widget_discoveries:
+			fillText(widgetView, R.id.tvText, "DiscoveriesText", sp);
+			break;
+		case R.layout.widget_issue:
+			fillText(widgetView, R.id.tvDesc, "IssueDesc", sp);
+			break;
 		}
+		
 		
 		// Обновление виджета (вторая зона)
 	    Intent updateIntent = new Intent(context, MyWidget.class);
@@ -88,7 +100,8 @@ public class MyWidget extends AppWidgetProvider {
 	
 	static void fillText(RemoteViews rv, int id, String key, SharedPreferences sp) {
 		String txt=sp.getString(key, null);
-		if (txt!=null) rv.setTextViewText(id, Html.fromHtml(txt));
+		if (txt!=null) rv.setTextViewText(id, Html.fromHtml(txt).toString());
+		
 		else rv.setViewVisibility(id, View.GONE);		
 	}
 }
