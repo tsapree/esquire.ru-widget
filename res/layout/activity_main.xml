@@ -21,11 +21,19 @@
         android:text="Decode data" />
 
     <Button
-        android:id="@+id/bClear"
+        android:id="@+id/bEsquire"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/bDecode"
+        android:text="Decode from Esquire.ru" />
+
+    <Button
+        android:id="@+id/bClear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/bEsquire"
         android:text="Clear data" />
 
 </RelativeLayout>

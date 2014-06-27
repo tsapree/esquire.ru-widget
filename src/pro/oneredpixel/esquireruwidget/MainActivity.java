@@ -37,7 +37,11 @@ public class MainActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.bDecode:
 			WebSqueezer ws=new WebSqueezer();
-			ws.updateStorage(this);
+			ws.updateStorage(this,false);
+			break;
+		case R.id.bEsquire:
+			WebSqueezer ws1=new WebSqueezer();
+			ws1.updateStorage(this,true);
 			break;
 		case R.id.bClear:
 		    editor.clear();

@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
+import java.net.URL;
+import java.net.URLConnection;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,9 +19,8 @@ public class WebSqueezer {
 	static final int READING_BUFFER_SIZE=1024;
 	static final int CHECKING_BUFFER_SIZE=512;
 	
-	public void updateStorage(Context context) {
-		InputStream is = context.getResources().openRawResource(R.raw.esquireru);
-		
+	public void updateStorage(Context context, boolean fromWeb) {
+	
 		String numberValue=null;
 		String numberUnits=null;
 		String numberDesc=null;
@@ -40,6 +43,29 @@ public class WebSqueezer {
 		int t1=0;
 		
 		try {
+			
+			InputStream is;
+			if (fromWeb) {
+				URL url = new URL("http://esquire.ru");
+				URLConnection connection;
+				
+				//TODO: методы получения адреса и порта прокси deprecated, поэтому
+				//      надо перевести на определение стандартным java-способом
+				//      либо вынести настройки прокси в настройки и не париться.
+				String proxyServer = android.net.Proxy.getDefaultHost();
+				int proxyPort = android.net.Proxy.getDefaultPort();
+				if (proxyServer!=null && proxyPort>0) {
+					Proxy proxy=new Proxy(java.net.Proxy.Type.HTTP,new InetSocketAddress(proxyServer,proxyPort));
+					connection = url.openConnection(proxy);
+				} else {
+					connection = url.openConnection();
+				};
+				connection.setConnectTimeout(3000);
+				is = connection.getInputStream();
+			} else {
+				is = context.getResources().openRawResource(R.raw.esquireru);
+			}
+			
 			InputStreamReader isr = new InputStreamReader(is,"UTF-8");
 			do {
 				readedSize=isr.read(chars,i,READING_BUFFER_SIZE-i);
