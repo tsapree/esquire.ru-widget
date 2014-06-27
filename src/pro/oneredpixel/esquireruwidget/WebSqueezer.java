@@ -16,8 +16,8 @@ import android.content.SharedPreferences.Editor;
 
 public class WebSqueezer {
 
-	static final int READING_BUFFER_SIZE=1024;
-	static final int CHECKING_BUFFER_SIZE=512;
+	static final int READING_BUFFER_SIZE=4096;
+	static final int CHECKING_BUFFER_SIZE=2048;
 	
 	public void updateStorage(Context context, boolean fromWeb) {
 	

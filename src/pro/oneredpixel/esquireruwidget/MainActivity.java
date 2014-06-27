@@ -16,6 +16,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		findViewById(R.id.bFill).setOnClickListener(this);
 		findViewById(R.id.bClear).setOnClickListener(this);
 		findViewById(R.id.bDecode).setOnClickListener(this);
+		findViewById(R.id.bEsquire).setOnClickListener(this);
 		
 	}
 
