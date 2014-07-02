@@ -34,7 +34,7 @@ public class MyWidget extends AppWidgetProvider {
 	
 	static void updateWidget(Context context, AppWidgetManager appWidgetManager,
 		       int widgetID) {
-		
+		/*
 		int layout=layouts[(int)(Math.random()*layouts.length)];
 		
 	    SharedPreferences sp = context.getSharedPreferences("widget_data", Context.MODE_PRIVATE);
@@ -95,7 +95,24 @@ public class MyWidget extends AppWidgetProvider {
 		    //widgetView.setInt(R.id.tv, "setBackgroundColor", widgetColor);
 		    
 		    // Обновляем виджет
-		    
+		*/
+		
+		RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_holder);
+		Intent updateIntent = new Intent(context, MyWidget.class);
+	    updateIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+	    updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,
+	        new int[] { widgetID });
+	    PendingIntent pIntent = PendingIntent.getBroadcast(context, widgetID, updateIntent, 0);
+	    widgetView.setOnClickPendingIntent(R.id.rlWidget, pIntent);
+		appWidgetManager.updateAppWidget(widgetID, widgetView);
+		
+		
+		//ViewFlipper vf = (ViewFlipper)findViewById(R.id.viewFlipper1);
+		
+		//LayoutInflater inflater = getLayoutInflater();
+		
+		//View view1 = (View)inflater.inflate(R.layout.view1, null);
+		//View view2 = (View)inflater.inflate(R.layout.view2, null);
 	}
 	
 	static void fillText(RemoteViews rv, int id, String key, SharedPreferences sp) {
