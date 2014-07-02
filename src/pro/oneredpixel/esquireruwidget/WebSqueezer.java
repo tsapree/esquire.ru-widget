@@ -1,10 +1,14 @@
 package pro.oneredpixel.esquireruwidget;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
+import java.net.MalformedURLException;
 import java.net.Proxy;
 import java.net.URL;
 import java.net.URLConnection;
@@ -46,22 +50,7 @@ public class WebSqueezer {
 			
 			InputStream is;
 			if (fromWeb) {
-				URL url = new URL("http://esquire.ru");
-				URLConnection connection;
-				
-				//TODO: методы получения адреса и порта прокси deprecated, поэтому
-				//      надо перевести на определение стандартным java-способом
-				//      либо вынести настройки прокси в настройки и не париться.
-				String proxyServer = android.net.Proxy.getDefaultHost();
-				int proxyPort = android.net.Proxy.getDefaultPort();
-				if (proxyServer!=null && proxyPort>0) {
-					Proxy proxy=new Proxy(java.net.Proxy.Type.HTTP,new InetSocketAddress(proxyServer,proxyPort));
-					connection = url.openConnection(proxy);
-				} else {
-					connection = url.openConnection();
-				};
-				connection.setConnectTimeout(3000);
-				is = connection.getInputStream();
+				is = openUrlConnection("http://esquire.ru");
 			} else {
 				is = context.getResources().openRawResource(R.raw.esquireru);
 			}
@@ -350,4 +339,72 @@ public class WebSqueezer {
 		}
 		return -1;
 	}
+	
+	public String downloadFileToCache(Context context, String src) {
+		String dst=null;
+		File fdst=null;
+		String dstFilename="issue.jpg";
+		String filename="http://esquire.ru"+src;
+		
+		try {
+
+			context.deleteFile(dstFilename);
+			OutputStream out=context.openFileOutput(dstFilename, Context.MODE_PRIVATE);
+			
+			InputStream in = openUrlConnection(filename);
+		    byte[] buf = new byte[8192];
+		    int len;
+		    while ((len = in.read(buf)) > 0) {
+		        out.write(buf, 0, len);
+		    }
+		    in.close();
+		    out.close();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			dst=null;
+			//return null;
+		}
+		if (dst==null) { //если произошла отмена или ошибка
+			if ((fdst!=null) && (fdst.exists())) fdst.delete();
+			dst=null;
+		};
+		return dst;
+		
+	}
+	
+	InputStream openUrlConnection(String src) {
+		InputStream in=null;
+		try {
+			URL url = new URL(src);
+			URLConnection connection;
+			
+			
+			//TODO: методы получения адреса и порта прокси deprecated, поэтому
+			//      надо перевести на определение стандартным java-способом
+			//      либо вынести настройки прокси в настройки и не париться.
+			String proxyServer = android.net.Proxy.getDefaultHost();
+			int proxyPort = android.net.Proxy.getDefaultPort();
+			if (proxyServer!=null && proxyPort>0) {
+				Proxy proxy=new Proxy(java.net.Proxy.Type.HTTP,new InetSocketAddress(proxyServer,proxyPort));
+				connection = url.openConnection(proxy);
+			} else {
+				connection = url.openConnection();
+			};
+			connection.setConnectTimeout(3000);
+			in = connection.getInputStream();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			//return null;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			//return null;
+		}
+		return in;
+	}
+
+	
 }

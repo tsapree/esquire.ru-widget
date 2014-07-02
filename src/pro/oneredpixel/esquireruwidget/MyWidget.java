@@ -104,6 +104,25 @@ public class MyWidget extends AppWidgetProvider {
 	        new int[] { widgetID });
 	    PendingIntent pIntent = PendingIntent.getBroadcast(context, widgetID, updateIntent, 0);
 	    widgetView.setOnClickPendingIntent(R.id.rlWidget, pIntent);
+
+	    //widgetView.setViewVisibility(R.id.widgetAbout, View.INVISIBLE);
+	    
+	    SharedPreferences sp = context.getSharedPreferences("widget_data", Context.MODE_PRIVATE);
+	    fillText(widgetView, R.id.tvDiscoveriesText, "DiscoveriesText", sp);
+	    
+	    fillText(widgetView, R.id.tvIssueDesc, "IssueDesc", sp);
+	    
+	    fillText(widgetView, R.id.tvNumberValue, "NumberValue", sp);
+		fillText(widgetView, R.id.tvNumberDesc, "NumberDesc", sp);
+		fillText(widgetView, R.id.tvNumberUnits, "NumberUnits", sp);
+		
+		fillText(widgetView, R.id.tvQuoteText, "QuoteText", sp);
+		fillText(widgetView, R.id.tvQuoteAuthorName, "QuoteAuthorName", sp);
+		fillText(widgetView, R.id.tvQuoteAuthorDesc, "QuoteAuthorDesc", sp);
+		
+		fillText(widgetView, R.id.tvRulesAuthorName, "RulesAuthorName", sp);
+		fillText(widgetView, R.id.tvRulesDesc, "RulesDesc", sp);
+
 		appWidgetManager.updateAppWidget(widgetID, widgetView);
 		
 		

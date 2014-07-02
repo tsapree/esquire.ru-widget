@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widgetDiscoveries"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:padding="@dimen/widget_margin" >
@@ -36,15 +37,14 @@
 		    android:layout_alignParentTop="true"
 		    android:layout_toRightOf="@+id/tvCenter"
 		    android:fontFamily="sans-serif"
-		    android:text="Открытия"
+		    android:gravity="right"
+		    android:text="Открытие дня"
 		    android:textAllCaps="true"
 		    android:textColor="#000"
-		    android:gravity="right"
 		    android:textStyle="bold" />
-
 	
 		<TextView
-		    android:id="@+id/tvText"
+		    android:id="@+id/tvDiscoveriesText"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:layout_alignParentLeft="true"

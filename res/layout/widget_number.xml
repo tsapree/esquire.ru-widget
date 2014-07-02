@@ -43,7 +43,7 @@
 		    android:textStyle="bold" />
 		
 		<TextView
-		    android:id="@+id/tvValue"
+		    android:id="@+id/tvNumberValue"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:layout_alignParentLeft="true"
@@ -56,24 +56,24 @@
 		    android:textStyle="bold" />
 			
 	    <TextView
-	        android:id="@+id/tvUnits"
+	        android:id="@+id/tvNumberUnits"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_alignParentLeft="true"
 	        android:layout_alignParentRight="true"
-	        android:layout_below="@+id/tvValue"
+	        android:layout_below="@+id/tvNumberValue"
 	        android:fontFamily="sans-serif-light"
 	        android:gravity="center"
 	        android:text="Units"
 	        android:textColor="#000" />
 	
 	    <TextView
-	        android:id="@+id/tvDesc"
+	        android:id="@+id/tvNumberDesc"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_alignParentLeft="true"
 	        android:layout_alignParentRight="true"
-	        android:layout_below="@+id/tvUnits"
+	        android:layout_below="@+id/tvNumberUnits"
 	        android:fontFamily="sans-serif"
 	        android:gravity="center"
 	        android:text="Desc"

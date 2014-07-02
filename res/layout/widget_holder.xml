@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/widget_margin" >
+    android:layout_height="match_parent" >
 
     <RelativeLayout
         android:id="@+id/rlWidget"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/background" >
+        android:layout_height="match_parent" >
 
         <ViewFlipper
             android:id="@+id/viewFlipper"
@@ -22,6 +20,12 @@
             android:flipInterval="3000"
             android:inAnimation="@anim/slide_in_toup"
             android:outAnimation="@anim/slide_out_toup" >
+            <include android:id="@+id/widget1"  layout="@layout/widget_about" />
+            <include android:id="@+id/widget2"  layout="@layout/widget_discoveries" />
+            <include android:id="@+id/widget3"  layout="@layout/widget_issue" />
+            <include android:id="@+id/widget4"  layout="@layout/widget_number" />
+            <include android:id="@+id/widget5"  layout="@layout/widget_quote" />
+            <include android:id="@+id/widget6"  layout="@layout/widget_rules" />
 
         </ViewFlipper>
         

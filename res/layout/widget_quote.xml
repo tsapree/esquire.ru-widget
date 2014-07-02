@@ -44,7 +44,7 @@
 
 	
 		<TextView
-		    android:id="@+id/tvText"
+		    android:id="@+id/tvQuoteText"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:layout_alignParentLeft="true"
@@ -56,12 +56,12 @@
 		    android:textColor="#000" />
 
 		<TextView
-		    android:id="@+id/tvAuthorName"
+		    android:id="@+id/tvQuoteAuthorName"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:layout_alignParentLeft="true"
 		    android:layout_alignParentRight="true"
-		    android:layout_below="@+id/tvText"
+		    android:layout_below="@+id/tvQuoteText"
 		    android:fontFamily="sans-serif"
 		    android:text="AuthorName"
 		    android:textColor="#000"
@@ -69,12 +69,12 @@
 		    android:textStyle="bold" />
 
 		<TextView
-		    android:id="@+id/tvAuthorDesc"
+		    android:id="@+id/tvQuoteAuthorDesc"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:layout_alignParentLeft="true"
 		    android:layout_alignParentRight="true"
-		    android:layout_below="@+id/tvAuthorName"
+		    android:layout_below="@+id/tvQuoteAuthorName"
 		    android:fontFamily="sans-serif"
 		    android:text="AuthorDesc"
 		    android:gravity="center"
