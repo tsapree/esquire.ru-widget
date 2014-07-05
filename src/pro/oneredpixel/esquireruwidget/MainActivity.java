@@ -38,7 +38,8 @@ public class MainActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.bDecode:
 			WebSqueezer ws=new WebSqueezer();
-			ws.updateStorage(this,false);
+			String rez=ws.downloadFileToCache(this, "/files/cache/images/1b/1f/72c15e37.fit111xNone.7df8e8.cover-101-ipad.jpg");
+			//ws.updateStorage(this,false);
 			break;
 		case R.id.bEsquire:
 			WebSqueezer ws1=new WebSqueezer();

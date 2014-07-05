@@ -5,7 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
@@ -16,12 +15,14 @@ import java.net.URLConnection;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.net.Uri;
+import android.widget.Toast;
 
 
 public class WebSqueezer {
 
 	static final int READING_BUFFER_SIZE=4096;
-	static final int CHECKING_BUFFER_SIZE=2048;
+	static final int CHECKING_BUFFER_SIZE=READING_BUFFER_SIZE-2048;
 	
 	public void updateStorage(Context context, boolean fromWeb) {
 	
@@ -39,6 +40,7 @@ public class WebSqueezer {
 	    String discoveriesText = null;
 	    
 	    String issueDesc = null;
+	    String issuePic = null;
 		
 		char[] chars = new char[READING_BUFFER_SIZE];
 		int readedSize;
@@ -217,6 +219,11 @@ public class WebSqueezer {
 						if (t1<0) continue;
 						issueDesc = String.copyValueOf(chars, t, t1-t);
 						i=t1+1;
+						
+						String cachedName=downloadFileToCache(context, "/files/cache/images/1b/1f/72c15e37.fit111xNone.7df8e8.cover-101-ipad.jpg");
+						Toast.makeText(context, "downloaded: "+cachedName, Toast.LENGTH_SHORT).show();
+						issuePic = cachedName;
+						
 						continue;
 					};
 					
@@ -254,6 +261,7 @@ public class WebSqueezer {
 		    editor.putString("DiscoveriesText", discoveriesText);
 		    
 		    editor.putString("IssueDesc", issueDesc);
+		    editor.putString("IssuePic", issuePic);
 		    
 		    editor.commit();
 
@@ -346,10 +354,12 @@ public class WebSqueezer {
 		String dstFilename="issue.jpg";
 		String filename="http://esquire.ru"+src;
 		
+		
+		
 		try {
-
+			
 			context.deleteFile(dstFilename);
-			OutputStream out=context.openFileOutput(dstFilename, Context.MODE_PRIVATE);
+			FileOutputStream out=context.openFileOutput(dstFilename, Context.MODE_WORLD_READABLE);
 			
 			InputStream in = openUrlConnection(filename);
 		    byte[] buf = new byte[8192];
@@ -359,6 +369,7 @@ public class WebSqueezer {
 		    }
 		    in.close();
 		    out.close();
+		    dst=Uri.fromFile(context.getFileStreamPath(dstFilename)).toString();
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

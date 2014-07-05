@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.text.Html;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -111,6 +112,9 @@ public class MyWidget extends AppWidgetProvider {
 	    fillText(widgetView, R.id.tvDiscoveriesText, "DiscoveriesText", sp);
 	    
 	    fillText(widgetView, R.id.tvIssueDesc, "IssueDesc", sp);
+	    //widgetView.setImageViewUri(R.id.ivIssueImage, Uri.parse(sp.getString("IssuePic", "")));
+	    String path=sp.getString("IssuePic", "");
+	    widgetView.setImageViewUri(R.id.ivIssueImage, Uri.parse(path));	    	    
 	    
 	    fillText(widgetView, R.id.tvNumberValue, "NumberValue", sp);
 		fillText(widgetView, R.id.tvNumberDesc, "NumberDesc", sp);
