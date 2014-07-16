@@ -126,6 +126,8 @@ public class MyWidget extends AppWidgetProvider {
 		
 		fillText(widgetView, R.id.tvRulesAuthorName, "RulesAuthorName", sp);
 		fillText(widgetView, R.id.tvRulesDesc, "RulesDesc", sp);
+		String rulesPicPath=sp.getString("RulesAuthorPic", "");
+		widgetView.setImageViewUri(R.id.ivRulesPhoto, Uri.parse(rulesPicPath));
 
 		appWidgetManager.updateAppWidget(widgetID, widgetView);
 		
