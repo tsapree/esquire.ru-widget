@@ -18,8 +18,9 @@
             android:layout_alignParentTop="true"
             android:autoStart="true"
             android:flipInterval="3000"
-            android:inAnimation="@anim/slide_in_toup"
-            android:outAnimation="@anim/slide_out_toup" >
+            android:inAnimation="@anim/fade_out"
+            android:outAnimation="@anim/fade_in" >
+
             <include android:id="@+id/widget1"  layout="@layout/widget_about" />
             <include android:id="@+id/widget2"  layout="@layout/widget_discoveries" />
             <include android:id="@+id/widget3"  layout="@layout/widget_issue" />
@@ -30,5 +31,15 @@
         </ViewFlipper>
         
     </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/ibRefresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:background="@drawable/btn_background"
+        android:src="@drawable/ic_refresh" />
 
 </RelativeLayout>

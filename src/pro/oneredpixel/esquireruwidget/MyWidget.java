@@ -103,8 +103,11 @@ public class MyWidget extends AppWidgetProvider {
 	    updateIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
 	    updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,
 	        new int[] { widgetID });
+	    //PendingIntent pIntent = PendingIntent.getBroadcast(context, widgetID, updateIntent, 0);
+	    //widgetView.setOnClickPendingIntent(R.id.rlWidget, pIntent);
+	    
 	    PendingIntent pIntent = PendingIntent.getBroadcast(context, widgetID, updateIntent, 0);
-	    widgetView.setOnClickPendingIntent(R.id.rlWidget, pIntent);
+	    widgetView.setOnClickPendingIntent(R.id.ibRefresh, pIntent);
 
 	    //widgetView.setViewVisibility(R.id.widgetAbout, View.INVISIBLE);
 	    
