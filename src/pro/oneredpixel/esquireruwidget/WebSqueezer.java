@@ -23,12 +23,6 @@ public class WebSqueezer {
 
 	static final int READING_BUFFER_SIZE=8192;
 	static final int TAIL_BUFFER_SIZE=3000;
-	private static final String STR_DIV="div";
-	private static final String STR_CLASS="class";
-	private static final String STR_TODAY_NOTD_UNITS="today-notd-units";
-	private static final String STR_TODAY_NOTD_DESCRIPTION="today-notd-description";
-	private static final String STR_QUOTE="today-quote";
-	
 	
 	public void updateStorageNew(Context context, boolean fromWeb) {
 		String numberValue=null;
@@ -58,15 +52,15 @@ public class WebSqueezer {
 		String className;
 		
 		while (ts.nextTag()) {
-			if (ts.getTagName().equalsIgnoreCase(STR_DIV)) {
-				className=ts.findKeyValueByName(STR_CLASS);
+			if (ts.getTagName().equalsIgnoreCase("div")) {
+				className=ts.findKeyValueByName("class");
 				if (className!=null) {
-					if (className.equals(STR_TODAY_NOTD_UNITS))
+					if (className.equals("today-notd-units"))
 						numberUnits=ts.getTagValue();
-					else if (className.equals(STR_TODAY_NOTD_DESCRIPTION))
+					else if (className.equals("today-notd-description"))
 						numberDesc=ts.getTagValue();
 					
-					else if ((quoteText==null) && (className.equals(STR_QUOTE)))
+					else if ((quoteText==null) && (className.equals("today-quote")))
 						quoteText=ts.getTagValue();
 					else if ((quoteAuthorName==null) && (className.equals("today-quote-author-name")))
 						quoteAuthorName=ts.getTagValue();
@@ -252,7 +246,6 @@ public class WebSqueezer {
 		private String keyNames[];
 		private String keyValues[];
 		
-		private String tag;
 		private String tagName;
 		
 		TaggedStream() {
