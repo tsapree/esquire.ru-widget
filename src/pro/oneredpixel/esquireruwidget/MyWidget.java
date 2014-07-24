@@ -40,7 +40,7 @@ public class MyWidget extends AppWidgetProvider {
 			updateWidget(context, appWidgetManager, id);
 		}
 		SharedPreferences sp = context.getSharedPreferences("widget_data", Context.MODE_PRIVATE);
-		if (sp.getLong("RefreshTime", 0)<(System.currentTimeMillis()+AUTO_REFRESH_DELAY))
+		if ((sp.getLong("RefreshTime", 0)+AUTO_REFRESH_DELAY)<System.currentTimeMillis())
 			startRefresh(context);
 		
 
