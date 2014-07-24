@@ -17,7 +17,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:autoStart="true"
-            android:flipInterval="3000"
+            android:flipInterval="8000"
             android:inAnimation="@anim/fade_out"
             android:outAnimation="@anim/fade_in" >
 

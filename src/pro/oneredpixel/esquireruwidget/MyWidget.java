@@ -119,6 +119,7 @@ public class MyWidget extends AppWidgetProvider {
 	    fillText(widgetView, R.id.tvIssueDesc, "IssueDesc", sp);
 	    //widgetView.setImageViewUri(R.id.ivIssueImage, Uri.parse(sp.getString("IssuePic", "")));
 	    String path=sp.getString("IssuePic", "");
+		widgetView.setImageViewResource(R.id.ivIssueImage, R.drawable.esquire);
 	    widgetView.setImageViewUri(R.id.ivIssueImage, Uri.parse(path));	    	    
 	    
 	    fillText(widgetView, R.id.tvNumberValue, "NumberValue", sp);
@@ -132,6 +133,8 @@ public class MyWidget extends AppWidgetProvider {
 		fillText(widgetView, R.id.tvRulesAuthorName, "RulesAuthorName", sp);
 		fillText(widgetView, R.id.tvRulesDesc, "RulesDesc", sp);
 		String rulesPicPath=sp.getString("RulesAuthorPic", "");
+
+		widgetView.setImageViewResource(R.id.ivRulesPhoto, R.drawable.esquire);
 		widgetView.setImageViewUri(R.id.ivRulesPhoto, Uri.parse(rulesPicPath));
 
 		widgetView.setViewVisibility(R.id.ibRefresh, View.VISIBLE);
