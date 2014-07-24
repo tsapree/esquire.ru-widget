@@ -1,7 +1,5 @@
 package pro.oneredpixel.esquireruwidget;
 
-import java.util.concurrent.TimeUnit;
-
 import android.app.PendingIntent;
 import android.app.PendingIntent.CanceledException;
 import android.appwidget.AppWidgetManager;
@@ -10,7 +8,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.text.Html;
@@ -24,6 +21,7 @@ public class MyWidget extends AppWidgetProvider {
 	
 	final static String ACTION_REFRESH = "pro.oneredpixel.esquireruwidget.refresh";
 	final static String ACTION_REFRESH_DONE = "pro.oneredpixel.esquireruwidget.refreshdone";
+	final static int AUTO_REFRESH_DELAY = 6*60*60*1000; //каждые 6 часов разрешать обновление виджета
 	
 	static int layouts[]={
 			R.layout.widget_about,
@@ -37,61 +35,47 @@ public class MyWidget extends AppWidgetProvider {
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
 		      int[] appWidgetIds) {
 		super.onUpdate(context, appWidgetManager, appWidgetIds);
+
 		for (int id : appWidgetIds) {
 			updateWidget(context, appWidgetManager, id);
 		}
+		SharedPreferences sp = context.getSharedPreferences("widget_data", Context.MODE_PRIVATE);
+		if (sp.getLong("RefreshTime", 0)<(System.currentTimeMillis()+AUTO_REFRESH_DELAY))
+			startRefresh(context);
+		
+
 	}
 	
 	public void onReceive(Context context, Intent intent) {
 	    super.onReceive(context, intent);
 	    if (intent.getAction().equalsIgnoreCase(ACTION_REFRESH)) {
-	    	SharedPreferences sp = context.getSharedPreferences("widget_data", Context.MODE_PRIVATE);
-		    Editor editor = sp.edit();
-		    editor.putLong("RefreshTime",0);
-		    editor.commit();
-		    //TODO: у меня два класса, MyWidget & MyWidgetLarge - но обновляется пока только MyWidget
-	        ComponentName thisAppWidget = new ComponentName(
-	            context.getPackageName(), getClass().getName());
-	        AppWidgetManager appWidgetManager = AppWidgetManager
-	            .getInstance(context);
+	        startRefresh(context);
+	    } else if (intent.getAction().equalsIgnoreCase(ACTION_REFRESH_DONE)) {
+	        ComponentName thisAppWidget = new ComponentName(context.getPackageName(), getClass().getName());
+	        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 	        int ids[] = appWidgetManager.getAppWidgetIds(thisAppWidget);
 	        for (int appWidgetID : ids) {
-	          //updateWidget(context, appWidgetManager, appWidgetID);
-	        	RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_holder);
-	        	//TODO: временно
-	        	if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB){
-	        		//widgetView.showNext(R.id.viewFlipper);
-	        	}	        	
-	        	widgetView.setViewVisibility(R.id.ibRefresh, View.GONE);
-	    		appWidgetManager.updateAppWidget(appWidgetID, widgetView);
+	        	updateWidget(context, appWidgetManager, appWidgetID);
 	        }
-	        Intent refreshDoneIntent = new Intent(context, MyWidget.class);
-		    refreshDoneIntent.setAction(ACTION_REFRESH_DONE);
-		    PendingIntent pIntent = PendingIntent.getBroadcast(context, 0, refreshDoneIntent, 0);
-		    MyTask mt = new MyTask();
-		    mt.attachIntent(pIntent , context);
-	        mt.execute();
 	    }
-	    if (intent.getAction().equalsIgnoreCase(ACTION_REFRESH_DONE)) {
-	    	SharedPreferences sp = context.getSharedPreferences("widget_data", Context.MODE_PRIVATE);
-		    Editor editor = sp.edit();
-		    editor.putLong("RefreshTime",0);
-		    editor.commit();
-		    //TODO: у меня два класса, MyWidget & MyWidgetLarge - но обновляется пока только MyWidget
-	        ComponentName thisAppWidget = new ComponentName(
-	            context.getPackageName(), getClass().getName());
-	        AppWidgetManager appWidgetManager = AppWidgetManager
-	            .getInstance(context);
-	        int ids[] = appWidgetManager.getAppWidgetIds(thisAppWidget);
-	        for (int appWidgetID : ids) {
-	          updateWidget(context, appWidgetManager, appWidgetID);
-	        	//RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_holder);
-	        	//widgetView.setViewVisibility(R.id.ibRefresh, View.VISIBLE);
-	    		//appWidgetManager.updateAppWidget(appWidgetID, widgetView);
-	        }
-	      }
-	    
-	  }
+	}
+	
+	public void startRefresh(Context context) {
+		ComponentName thisAppWidget = new ComponentName(context.getPackageName(), getClass().getName());
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        int ids[] = appWidgetManager.getAppWidgetIds(thisAppWidget);
+        for (int appWidgetID : ids) {
+        	RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_holder);
+        	widgetView.setViewVisibility(R.id.ibRefresh, View.GONE);
+    		appWidgetManager.updateAppWidget(appWidgetID, widgetView);
+        }
+        Intent refreshDoneIntent = new Intent(context, MyWidget.class);
+	    refreshDoneIntent.setAction(ACTION_REFRESH_DONE);
+	    PendingIntent pIntent = PendingIntent.getBroadcast(context, 0, refreshDoneIntent, 0);
+	    MyTask mt = new MyTask();
+	    mt.attachIntent(pIntent , context);
+        mt.execute();
+	}
 	
 	static void updateWidget(Context context, AppWidgetManager appWidgetManager,
 		       int widgetID) {
@@ -117,7 +101,6 @@ public class MyWidget extends AppWidgetProvider {
 	    fillText(widgetView, R.id.tvDiscoveriesText, "DiscoveriesText", sp);
 	    
 	    fillText(widgetView, R.id.tvIssueDesc, "IssueDesc", sp);
-	    //widgetView.setImageViewUri(R.id.ivIssueImage, Uri.parse(sp.getString("IssuePic", "")));
 	    String path=sp.getString("IssuePic", "");
 		widgetView.setImageViewResource(R.id.ivIssueImage, R.drawable.esquire);
 	    widgetView.setImageViewUri(R.id.ivIssueImage, Uri.parse(path));	    	    
@@ -140,13 +123,6 @@ public class MyWidget extends AppWidgetProvider {
 		widgetView.setViewVisibility(R.id.ibRefresh, View.VISIBLE);
 		appWidgetManager.updateAppWidget(widgetID, widgetView);
 		
-		
-		//ViewFlipper vf = (ViewFlipper)findViewById(R.id.viewFlipper1);
-		
-		//LayoutInflater inflater = getLayoutInflater();
-		
-		//View view1 = (View)inflater.inflate(R.layout.view1, null);
-		//View view2 = (View)inflater.inflate(R.layout.view2, null);
 	}
 	
 	static void fillText(RemoteViews rv, int id, String key, SharedPreferences sp) {
@@ -169,12 +145,6 @@ public class MyWidget extends AppWidgetProvider {
 		}
 		
 	    @Override
-	    protected void onPreExecute() {
-	      super.onPreExecute();
-	      //tvInfo.setText("Begin");
-	    }
-
-	    @Override
 	    protected Void doInBackground(Void... params) {
 	    	WebSqueezer ws = new WebSqueezer();
 	    	ws.updateStorageNew(context, true);
@@ -184,12 +154,10 @@ public class MyWidget extends AppWidgetProvider {
 	    @Override
 	    protected void onPostExecute(Void result) {
 	      super.onPostExecute(result);
-	      //tvInfo.setText("End");
 	      if (pIntent!=null)
 			try {
 				pIntent.send();
 			} catch (CanceledException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	    }

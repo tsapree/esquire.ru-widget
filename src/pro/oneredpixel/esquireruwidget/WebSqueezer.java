@@ -46,8 +46,12 @@ public class WebSqueezer {
 		
 		TaggedStream ts=new TaggedStream();
 		
-		if (fromWeb) ts.openConnection("http://esquire.ru");
-		else ts.openResourceConnection(context, R.raw.esquireru);
+		if (fromWeb) {
+			if (!ts.openConnection("http://esquire.ru")) return;
+		}
+		else {
+			ts.openResourceConnection(context, R.raw.esquireru);
+		}
 
 		String className;
 		
@@ -135,12 +139,15 @@ public class WebSqueezer {
 		    editor.putString("QuoteAuthorDesc", quoteAuthorDesc);
 	    }
 	    
-	    editor.putString("RulesAuthorName", rulesAuthorName);
-	    if (rulesAuthorPic!=null) editor.putString("RulesAuthorPic", rulesAuthorPic);
-	    editor.putString("RulesAuthorPicLink", rulesAuthorPicLink);
-	    editor.putString("RulesDesc", rulesDesc);
+	    if ((rulesAuthorName!=null) && (rulesDesc!=null)) {
+	    	editor.putString("RulesAuthorName", rulesAuthorName);
+	    	if (rulesAuthorPic!=null) editor.putString("RulesAuthorPic", rulesAuthorPic);
+	    	editor.putString("RulesAuthorPicLink", rulesAuthorPicLink);
+	    	editor.putString("RulesDesc", rulesDesc);
+	    }
 	    
-	    editor.putString("DiscoveriesText", discoveriesText);
+	    if (discoveriesText!=null)
+	    	editor.putString("DiscoveriesText", discoveriesText);
 	    
 	    if ((issueDesc!=null) && (issuePicLink!=null)) {
 		    editor.putString("IssueDesc", issueDesc);
@@ -148,6 +155,7 @@ public class WebSqueezer {
 		    if (issuePic!=null) editor.putString("IssuePic", issuePic);
 	    }
 	    
+	    editor.putLong("RefreshTime",System.currentTimeMillis());
 	    editor.commit();
 		
 	}
