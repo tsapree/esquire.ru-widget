@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/rlWidget"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ViewFlipper
+            android:id="@+id/viewFlipper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:autoStart="true"
+            android:flipInterval="8000"
+            android:inAnimation="@anim/fade_out"
+            android:outAnimation="@anim/fade_in" >
+
+            <include android:id="@+id/widget1"  layout="@layout/widget_about" />
+            <include android:id="@+id/widget2"  layout="@layout/widget_discoveries" />
+            <include android:id="@+id/widget3"  layout="@layout/widget_issue" />
+            <include android:id="@+id/widget4"  layout="@layout/widget_number" />
+            <include android:id="@+id/widget5"  layout="@layout/widget_quote" />
+            <include android:id="@+id/widget6"  layout="@layout/widget_rules_land" />
+
+        </ViewFlipper>
+        
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/ibRefresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:background="@drawable/btn_background"
+        android:src="@drawable/ic_refresh" />
+
+</RelativeLayout>

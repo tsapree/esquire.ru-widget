@@ -1,5 +1,6 @@
 package pro.oneredpixel.esquireruwidget;
 
+import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.app.PendingIntent.CanceledException;
 import android.appwidget.AppWidgetManager;
@@ -10,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -60,6 +62,11 @@ public class MyWidget extends AppWidgetProvider {
 	    }
 	}
 	
+	public void onAppWidgetOptionsChanged (Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) {
+		updateWidget(context, appWidgetManager, appWidgetId);
+	}
+	
+	
 	public void startRefresh(Context context) {
 		ComponentName thisAppWidget = new ComponentName(context.getPackageName(), getClass().getName());
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
@@ -77,10 +84,21 @@ public class MyWidget extends AppWidgetProvider {
         mt.execute();
 	}
 	
+	@SuppressLint("NewApi")
 	static void updateWidget(Context context, AppWidgetManager appWidgetManager,
 		       int widgetID) {
+		boolean landscape = false;
+		RemoteViews widgetView;
 		
-		RemoteViews widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_holder);
+		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+			Bundle opt = appWidgetManager.getAppWidgetOptions(widgetID);
+			int w = (Integer)opt.get(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH );
+			int h = (Integer)opt.get(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT );
+			if ((h>0) && ((w*100/h)>120)) landscape = true; 
+		}
+		
+		if (landscape) widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_holder_land);
+		else widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_holder);
 		
 		//обновление виджета, вызов метода onUpdate 
 		Intent updateIntent = new Intent(context, MyWidget.class);
