@@ -18,61 +18,80 @@
             android:layout_centerHorizontal="true"
             android:text="   " />
 
-		<ImageView
-		    android:id="@+id/ivLogo"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_alignBottom="@+id/tvAbout"
-		    android:layout_alignParentLeft="true"
-		    android:layout_alignRight="@+id/tvCenter"
-		    android:scaleType="fitStart"
-		    android:src="@drawable/esquire" />
-
-		<TextView
-		    android:id="@+id/tvAbout"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_alignParentRight="true"
-		    android:layout_alignParentTop="true"
-		    android:layout_toRightOf="@+id/tvCenter"
-		    android:fontFamily="sans-serif"
-		    android:text="Правила жизни"
-		    android:textAllCaps="true"
-		    android:textColor="#000"
-		    android:gravity="right"
-		    android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvRulesAuthorName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/tvAbout"
-            android:layout_toRightOf="@+id/ivRulesPhoto"
-            android:gravity="center"
-            android:text="Брюс Уиллис"
-            android:textColor="#FF0082DD" />
-
         <ImageView
-            android:id="@+id/ivRulesPhoto"
+            android:id="@+id/ivLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tvAbout"
             android:layout_alignParentLeft="true"
-            android:layout_alignTop="@+id/tvRulesAuthorName"
-            android:adjustViewBounds="true"
-            android:src="@drawable/rules" />
+            android:layout_alignRight="@+id/tvCenter"
+            android:scaleType="fitStart"
+            android:src="@drawable/esquire" />
 
         <TextView
-            android:id="@+id/tvRulesDesc"
+            android:id="@+id/tvAbout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/tvRulesAuthorName"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/tvRulesAuthorName"
-            android:gravity="center"
-            android:text="“Выпадение волос, лысина — это способ Господа напомнить мне, что я человек, а не обезьяна” "
-            android:textColor="#000" />
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/tvCenter"
+            android:fontFamily="sans-serif"
+            android:gravity="right"
+            android:text="Правила жизни"
+            android:textAllCaps="true"
+            android:textColor="#000"
+            android:textSize="@dimen/font_header_size"
+            android:textStyle="bold" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/ivLogo"
+            android:layout_margin="5dp" >
+
+            <ImageView
+                android:id="@+id/ivRulesPhoto"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="2"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/rules" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tvRulesAuthorName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:text="Брюс Уиллис tot esho"
+                    android:textColor="#FF0082DD"
+                    android:textSize="@dimen/font_rules_name_size" />
+
+                <TextView
+                    android:id="@+id/tvRulesDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="“Выпадение волос, лысина — это способ Господа напомнить мне, что я человек, а не обезьяна” "
+                    android:textColor="#000"
+                    android:textSize="@dimen/font_text_size"
+                    android:typeface="serif" />
+
+            </LinearLayout>
+        </LinearLayout>
     </RelativeLayout>
 
 </RelativeLayout>

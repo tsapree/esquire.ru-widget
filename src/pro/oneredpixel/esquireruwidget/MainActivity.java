@@ -25,7 +25,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 	    SharedPreferences sp = getSharedPreferences("widget_data", MODE_PRIVATE);
 	    Editor editor = sp.edit();
-		switch (v.getId()) {
+		switch (v.getId()) { 
 		case R.id.bFill:
 		    editor.putString("NumberValue", "65 000");
 		    editor.putString("NumberUnits", "рублей");

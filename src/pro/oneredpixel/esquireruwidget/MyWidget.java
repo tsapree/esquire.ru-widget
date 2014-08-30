@@ -25,6 +25,7 @@ public class MyWidget extends AppWidgetProvider {
 	final static String ACTION_REFRESH_DONE = "pro.oneredpixel.esquireruwidget.refreshdone";
 	final static int AUTO_REFRESH_DELAY = 6*60*60*1000; //каждые 6 часов разрешать обновление виджета
 	
+	/*
 	static int layouts[]={
 			R.layout.widget_about,
 			R.layout.widget_number,
@@ -33,6 +34,7 @@ public class MyWidget extends AppWidgetProvider {
 			R.layout.widget_rules,
 			R.layout.widget_issue,
 	};
+	*/
 	
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
 		      int[] appWidgetIds) {
@@ -87,14 +89,14 @@ public class MyWidget extends AppWidgetProvider {
 	@SuppressLint("NewApi")
 	static void updateWidget(Context context, AppWidgetManager appWidgetManager,
 		       int widgetID) {
-		boolean landscape = false;
+		boolean landscape = true;
 		RemoteViews widgetView;
 		
 		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
 			Bundle opt = appWidgetManager.getAppWidgetOptions(widgetID);
 			int w = (Integer)opt.get(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH );
 			int h = (Integer)opt.get(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT );
-			if ((h>0) && ((w*100/h)>120)) landscape = true; 
+			if ((h>0) && ((w*100/h)<120)) landscape = false; 
 		}
 		
 		if (landscape) widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_holder_land);

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="widget_margin">8dp</dimen>
+    <dimen name="font_header_size">18sp</dimen>
+    <dimen name="font_text_size">17sp</dimen>
+    <dimen name="font_rules_name_size">24sp</dimen>
+    <dimen name="font_numbers_size">32sp</dimen>
+    <dimen name="font_issue_size">13sp</dimen>
+</resources>

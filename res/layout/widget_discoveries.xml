@@ -41,19 +41,22 @@
 		    android:text="Открытие дня"
 		    android:textAllCaps="true"
 		    android:textColor="#000"
+		    android:textSize="@dimen/font_header_size"
 		    android:textStyle="bold" />
 	
 		<TextView
 		    android:id="@+id/tvDiscoveriesText"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
+		    android:layout_alignParentBottom="true"
 		    android:layout_alignParentLeft="true"
 		    android:layout_alignParentRight="true"
 		    android:layout_below="@+id/tvAbout"
 		    android:fontFamily="sans-serif"
-		    android:text="Text"
 		    android:gravity="center"
-		    android:textColor="#000" />
+		    android:text="Text"
+		    android:textColor="#000"
+		    android:textSize="@dimen/font_text_size" />
 
 	</RelativeLayout>
 
