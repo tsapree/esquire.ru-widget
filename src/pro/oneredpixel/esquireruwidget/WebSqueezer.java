@@ -76,9 +76,11 @@ public class WebSqueezer {
 						ts.nextTag();
 						rulesAuthorPicLink=ts.findKeyValueByName("src");
 					}
-					else if (rulesDesc==null && (className.equals("index-wilpost-excerpt"))) 
+					else if (rulesDesc==null && (className.equals("index-wilpost-excerpt"))) {
 						rulesDesc = ts.getTagValue();
-					
+						int il=rulesDesc.indexOf("<a");
+						if (il>0) rulesDesc=rulesDesc.substring(0, il);
+					}					
 					else if ((discoveriesText==null) && (className.equals("today-science"))) {
 						ts.nextTag();
 						discoveriesText = ts.getTagValue();

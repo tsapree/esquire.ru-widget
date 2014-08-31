@@ -74,7 +74,6 @@
                     android:id="@+id/tvRulesAuthorName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
                     android:gravity="center"
                     android:text="Брюс Уиллис tot esho"
                     android:textColor="#FF0082DD"
@@ -88,7 +87,7 @@
                     android:text="“Выпадение волос, лысина — это способ Господа напомнить мне, что я человек, а не обезьяна” "
                     android:textColor="#000"
                     android:textSize="@dimen/font_text_size"
-                    android:typeface="serif" />
+                    android:typeface="sans" />
 
             </LinearLayout>
         </LinearLayout>

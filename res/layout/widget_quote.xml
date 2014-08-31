@@ -49,7 +49,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/tvCenter"
+            android:layout_alignTop="@+id/tvCenter"
             android:gravity="center_vertical"
             android:orientation="vertical" >
 
@@ -57,18 +57,17 @@
                 android:id="@+id/tvQuoteText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="@dimen/font_text_size"
                 android:gravity="center"
                 android:text="text"
                 android:textColor="#000"
-                android:textSize="@dimen/font_text_size"
+                android:textSize="@dimen/font_header_size"
                 android:typeface="serif" />
 
             <TextView
                 android:id="@+id/tvQuoteAuthorName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
                 android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:text="AuthorName"

@@ -25,23 +25,13 @@ public class MyWidget extends AppWidgetProvider {
 	final static String ACTION_REFRESH_DONE = "pro.oneredpixel.esquireruwidget.refreshdone";
 	final static int AUTO_REFRESH_DELAY = 6*60*60*1000; //каждые 6 часов разрешать обновление виджета
 	
-	/*
-	static int layouts[]={
-			R.layout.widget_about,
-			R.layout.widget_number,
-			R.layout.widget_quote,
-			R.layout.widget_discoveries,
-			R.layout.widget_rules,
-			R.layout.widget_issue,
-	};
-	*/
-	
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
 		      int[] appWidgetIds) {
 		super.onUpdate(context, appWidgetManager, appWidgetIds);
-
-		for (int id : appWidgetIds) {
-			updateWidget(context, appWidgetManager, id);
+		if (appWidgetIds!=null) {
+			for (int id : appWidgetIds) {
+				updateWidget(context, appWidgetManager, id);
+			}
 		}
 		SharedPreferences sp = context.getSharedPreferences("widget_data", Context.MODE_PRIVATE);
 		if ((sp.getLong("RefreshTime", 0)+AUTO_REFRESH_DELAY)<System.currentTimeMillis())
@@ -52,15 +42,17 @@ public class MyWidget extends AppWidgetProvider {
 	
 	public void onReceive(Context context, Intent intent) {
 	    super.onReceive(context, intent);
-	    if (intent.getAction().equalsIgnoreCase(ACTION_REFRESH)) {
-	        startRefresh(context);
-	    } else if (intent.getAction().equalsIgnoreCase(ACTION_REFRESH_DONE)) {
-	        ComponentName thisAppWidget = new ComponentName(context.getPackageName(), getClass().getName());
-	        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-	        int ids[] = appWidgetManager.getAppWidgetIds(thisAppWidget);
-	        for (int appWidgetID : ids) {
-	        	updateWidget(context, appWidgetManager, appWidgetID);
-	        }
+	    if (intent!=null) {
+		    if (intent.getAction().equalsIgnoreCase(ACTION_REFRESH)) {
+		        startRefresh(context);
+		    } else if (intent.getAction().equalsIgnoreCase(ACTION_REFRESH_DONE)) {
+		        ComponentName thisAppWidget = new ComponentName(context.getPackageName(), getClass().getName());
+		        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+		        int ids[] = appWidgetManager.getAppWidgetIds(thisAppWidget);
+		        for (int appWidgetID : ids) {
+		        	updateWidget(context, appWidgetManager, appWidgetID);
+		        }
+		    }
 	    }
 	}
 	
@@ -94,9 +86,11 @@ public class MyWidget extends AppWidgetProvider {
 		
 		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
 			Bundle opt = appWidgetManager.getAppWidgetOptions(widgetID);
-			int w = (Integer)opt.get(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH );
-			int h = (Integer)opt.get(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT );
-			if ((h>0) && ((w*100/h)<120)) landscape = false; 
+			if (opt!=null) {
+				int w = (Integer)opt.get(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH );
+				int h = (Integer)opt.get(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT );
+				if ((h>0) && ((w*100/h)<120)) landscape = false;
+			}
 		}
 		
 		if (landscape) widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_holder_land);
