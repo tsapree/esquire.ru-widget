@@ -107,11 +107,16 @@ public class MyWidget extends AppWidgetProvider {
 	    //PendingIntent pIntent = PendingIntent.getBroadcast(context, widgetID, updateIntent, 0);
 	    //widgetView.setOnClickPendingIntent(R.id.rlWidget, pIntent);
 	    
+		Intent browseIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://esquire.ru/"));
+		PendingIntent pIntent = PendingIntent.getActivity(context, 0, browseIntent, 0);
+	    widgetView.setOnClickPendingIntent(R.id.rlWidget, pIntent);
+		
+		
 	    //отправка запроса на обновление данных
 	    Intent refreshIntent = new Intent(context, MyWidget.class);
 	    refreshIntent.setAction(ACTION_REFRESH);
 	    refreshIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[] { widgetID });
-	    PendingIntent pIntent = PendingIntent.getBroadcast(context, widgetID, refreshIntent, 0);
+	    pIntent = PendingIntent.getBroadcast(context, widgetID, refreshIntent, 0);
 	    widgetView.setOnClickPendingIntent(R.id.ibRefresh, pIntent);
 	    
 	    SharedPreferences sp = context.getSharedPreferences("widget_data", Context.MODE_PRIVATE);
