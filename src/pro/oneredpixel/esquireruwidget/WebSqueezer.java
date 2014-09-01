@@ -22,7 +22,7 @@ import android.net.Uri;
 public class WebSqueezer {
 
 	static final int READING_BUFFER_SIZE=8192;
-	static final int TAIL_BUFFER_SIZE=3000;
+	static final int TAIL_BUFFER_SIZE=5000;
 	
 	public void updateStorageNew(Context context, boolean fromWeb) {
 		String numberValue=null;
@@ -247,7 +247,7 @@ public class WebSqueezer {
 		private int bufferIndex=0;
 		private int bufferDownloaded=0;
 		
-		private static final int MAX_KEYS=16;
+		private static final int MAX_KEYS=32;
 		private static final int SYM_TAB=8; //символ табуляции
 		
 		private InputStream is;

@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 //TODO: избавиться от String+=String
 //TODO: использовать StringBuffer
@@ -84,6 +85,7 @@ public class MyWidget extends AppWidgetProvider {
 		boolean landscape = true;
 		RemoteViews widgetView;
 		
+		
 		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
 			Bundle opt = appWidgetManager.getAppWidgetOptions(widgetID);
 			if (opt!=null) {
@@ -92,6 +94,7 @@ public class MyWidget extends AppWidgetProvider {
 				if ((h>0) && ((w*100/h)<120)) landscape = false;
 			}
 		}
+		
 		
 		if (landscape) widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_holder_land);
 		else widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_holder);
@@ -152,6 +155,7 @@ public class MyWidget extends AppWidgetProvider {
 	class MyTask extends AsyncTask<Void, Void, Void> {
 		PendingIntent pIntent;
 		Context context;
+		boolean errorHappened = false;
 		
 		void attachIntent(PendingIntent pi, Context c) {
 			pIntent = pi;
@@ -160,8 +164,13 @@ public class MyWidget extends AppWidgetProvider {
 		
 	    @Override
 	    protected Void doInBackground(Void... params) {
+	    	try {
 	    	WebSqueezer ws = new WebSqueezer();
 	    	ws.updateStorageNew(context, true);
+	    	} catch (Exception e) {
+	    		e.printStackTrace();
+	    		errorHappened = true;
+	    	}
 	      return null;
 	    }
 
@@ -173,7 +182,10 @@ public class MyWidget extends AppWidgetProvider {
 				pIntent.send();
 			} catch (CanceledException e) {
 				e.printStackTrace();
+				errorHappened = true;
 			}
+	      if (errorHappened) Toast.makeText(this.context, "Ошибка обновления данных с сайта Esquire.ru", Toast.LENGTH_SHORT).show();
+
 	    }
 	  }
 }
