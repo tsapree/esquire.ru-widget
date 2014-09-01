@@ -2,7 +2,7 @@
 <resources>
     <dimen name="widget_margin">8dp</dimen>
     <dimen name="font_header_size">14sp</dimen>
-    <dimen name="font_text_size">13sp</dimen>
+    <dimen name="font_text_size">12sp</dimen>
     <dimen name="font_rules_name_size">18sp</dimen>
     <dimen name="font_numbers_size">24sp</dimen>
     <dimen name="font_issue_size">10sp</dimen>

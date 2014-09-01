@@ -100,18 +100,18 @@ public class MyWidget extends AppWidgetProvider {
 		else widgetView = new RemoteViews(context.getPackageName(), R.layout.widget_holder);
 		
 		//обновление виджета, вызов метода onUpdate 
-		Intent updateIntent = new Intent(context, MyWidget.class);
-	    updateIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-	    updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,
-	        new int[] { widgetID });
-	    PendingIntent pIntent = PendingIntent.getBroadcast(context, widgetID, updateIntent, 0);
-	    widgetView.setOnClickPendingIntent(R.id.rlWidget, pIntent);
+		//Intent updateIntent = new Intent(context, MyWidget.class);
+	    //updateIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+	    //updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,
+	    //    new int[] { widgetID });
+	    //PendingIntent pIntent = PendingIntent.getBroadcast(context, widgetID, updateIntent, 0);
+	    //widgetView.setOnClickPendingIntent(R.id.rlWidget, pIntent);
 	    
 	    //отправка запроса на обновление данных
 	    Intent refreshIntent = new Intent(context, MyWidget.class);
 	    refreshIntent.setAction(ACTION_REFRESH);
 	    refreshIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, new int[] { widgetID });
-	    pIntent = PendingIntent.getBroadcast(context, widgetID, refreshIntent, 0);
+	    PendingIntent pIntent = PendingIntent.getBroadcast(context, widgetID, refreshIntent, 0);
 	    widgetView.setOnClickPendingIntent(R.id.ibRefresh, pIntent);
 	    
 	    SharedPreferences sp = context.getSharedPreferences("widget_data", Context.MODE_PRIVATE);
