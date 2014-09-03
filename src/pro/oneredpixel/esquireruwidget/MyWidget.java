@@ -87,11 +87,15 @@ public class MyWidget extends AppWidgetProvider {
 		
 		
 		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-			Bundle opt = appWidgetManager.getAppWidgetOptions(widgetID);
-			if (opt!=null) {
-				int w = (Integer)opt.get(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH );
-				int h = (Integer)opt.get(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT );
-				if ((h>0) && ((w*100/h)<120)) landscape = false;
+			if (appWidgetManager!=null) {
+				Bundle opt = appWidgetManager.getAppWidgetOptions(widgetID);
+				if (opt!=null) {
+					Object obj=opt.get(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH );
+					int w = (obj!=null)?((Integer)obj):0;
+					obj = opt.get(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT );
+					int h = (obj!=null)?((Integer)obj):0;
+					if ((h>0) && ((w*100/h)<120)) landscape = false;
+				}
 			}
 		}
 		
@@ -171,7 +175,7 @@ public class MyWidget extends AppWidgetProvider {
 	    protected Void doInBackground(Void... params) {
 	    	try {
 	    	WebSqueezer ws = new WebSqueezer();
-	    	ws.updateStorageNew(context, true);
+	    	ws.updateStorageNew(context);
 	    	} catch (Exception e) {
 	    		e.printStackTrace();
 	    		errorHappened = true;

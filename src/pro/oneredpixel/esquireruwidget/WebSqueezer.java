@@ -24,7 +24,7 @@ public class WebSqueezer {
 	static final int READING_BUFFER_SIZE=8192;
 	static final int TAIL_BUFFER_SIZE=5000;
 	
-	public void updateStorageNew(Context context, boolean fromWeb) {
+	public void updateStorageNew(Context context) {
 		String numberValue=null;
 		String numberUnits=null;
 		String numberDesc=null;
@@ -46,12 +46,7 @@ public class WebSqueezer {
 		
 		TaggedStream ts=new TaggedStream();
 		
-		if (fromWeb) {
-			if (!ts.openConnection("http://esquire.ru")) return;
-		}
-		else {
-			ts.openResourceConnection(context, R.raw.esquireru);
-		}
+		if (!ts.openConnection("http://esquire.ru")) return;
 
 		String className;
 		
