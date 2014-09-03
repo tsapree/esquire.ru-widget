@@ -58,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="value"
+                android:text="17"
                 android:textColor="#000"
                 android:textSize="@dimen/font_numbers_size"
                 android:textStyle="bold"
@@ -71,7 +71,7 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="sans-serif-light"
                 android:gravity="center"
-                android:text="Units"
+                android:text="метров"
                 android:textColor="#000"
                 android:textSize="@dimen/font_text_size" />
 
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:gravity="center"
-                android:text="Desc"
+                android:text="Такова длина тоннеля, который прорыли грабители в британском городе Солфорд, чтобы украсть банкомат. "
                 android:textColor="#000"
                 android:textSize="@dimen/font_text_size" />
 

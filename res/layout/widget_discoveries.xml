@@ -54,7 +54,7 @@
 		    android:layout_alignTop="@+id/tvCenter"
 		    android:fontFamily="sans-serif"
 		    android:gravity="center"
-		    android:text="Text"
+		    android:text="Орехи кешью, обработанные сульфитом натрия, становятся гипоаллергенными."
 		    android:textColor="#000"
 		    android:textSize="@dimen/font_text_size" />
 

@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/font_text_size"
                 android:gravity="center"
-                android:text="text"
+                android:text="«Простите меня. Мы хотели как лучше»"
                 android:textColor="#000"
                 android:textSize="@dimen/font_text_size"
                 android:typeface="serif" />
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:gravity="center"
-                android:text="AuthorName"
+                android:text="Итан Цукерман"
                 android:textColor="#000"
                 android:textSize="@dimen/font_text_size"
                 android:textStyle="bold" />
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:gravity="center"
-                android:text="AuthorDesc"
+                android:text="Создатель первого в истории «всплывающего окна»"
                 android:textColor="#000"
                 android:textSize="@dimen/font_text_size" />
 
